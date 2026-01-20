@@ -1,26 +1,392 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #0a0a0a;
+  color: #ffffff;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Circuit Board Pattern Background using CSS Gradients - Enhanced to match logo */
+.circuit-board-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background: 
+    /* Base dark background */
+    #0a0a0a,
+    /* Horizontal circuit traces - more visible */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(245, 158, 11, 0.15) 1px,
+      rgba(245, 158, 11, 0.15) 2px,
+      transparent 2px,
+      transparent 60px,
+      rgba(245, 158, 11, 0.12) 60px,
+      rgba(245, 158, 11, 0.12) 62px
+    ),
+    /* Vertical circuit traces - more visible */
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 1px,
+      rgba(245, 158, 11, 0.15) 1px,
+      rgba(245, 158, 11, 0.15) 2px,
+      transparent 2px,
+      transparent 60px,
+      rgba(245, 158, 11, 0.12) 60px,
+      rgba(245, 158, 11, 0.12) 62px
+    ),
+    /* Diagonal traces (45deg) - circuit paths */
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 3px,
+      rgba(245, 158, 11, 0.1) 3px,
+      rgba(245, 158, 11, 0.1) 4px,
+      transparent 4px,
+      transparent 80px,
+      rgba(245, 158, 11, 0.08) 80px,
+      rgba(245, 158, 11, 0.08) 82px
+    ),
+    /* Diagonal traces (-45deg) - circuit paths */
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 3px,
+      rgba(245, 158, 11, 0.1) 3px,
+      rgba(245, 158, 11, 0.1) 4px,
+      transparent 4px,
+      transparent 80px,
+      rgba(245, 158, 11, 0.08) 80px,
+      rgba(245, 158, 11, 0.08) 82px
+    ),
+    /* Circuit nodes/connection points */
+    radial-gradient(circle at 20% 20%, rgba(245, 158, 11, 0.2) 2px, transparent 2px),
+    radial-gradient(circle at 40% 60%, rgba(245, 158, 11, 0.2) 2px, transparent 2px),
+    radial-gradient(circle at 60% 30%, rgba(245, 158, 11, 0.2) 2px, transparent 2px),
+    radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.2) 2px, transparent 2px),
+    /* Grid overlay for circuit nodes */
+    linear-gradient(rgba(245, 158, 11, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.1) 1px, transparent 1px);
+  background-size: 
+    100% 100%,
+    100% 120px,
+    120px 100%,
+    200px 200px,
+    200px 200px,
+    400px 400px,
+    400px 400px,
+    400px 400px,
+    400px 400px,
+    60px 60px,
+    60px 60px;
+  background-position: 
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    100px 100px,
+    200px 300px,
+    500px 200px,
+    0 0,
+    0 0;
+  opacity: 0.6;
+}
+
+/* Grid texture overlay */
+.grid-texture {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+/* Hexagonal clip-path utility */
+.hexagon {
+  clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+}
+
+/* Honeycomb Grid Layout */
+.honeycomb-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 3rem;
+  padding: 4rem 2rem 8rem;
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.hexagon-card {
+  position: relative;
+  width: 360px;
+  height: 415.69px; /* Height = width * sqrt(3) / 2 * 2 for proper hexagon aspect ratio */
+  margin-bottom: -120px; /* Overlap for honeycomb effect */
+  flex-shrink: 0;
+}
+
+/* Offset every other item to create honeycomb pattern */
+.hexagon-card:nth-child(2n) {
+  margin-top: 208px; /* Half of height for proper offset */
+}
+
+/* Second row should mirror first row: 4(left), 5(right), 6(left) */
+/* Outer two hexagons (4 and 6) raised to align with top row outer hexagons */
+.hexagon-card:nth-child(4) {
+  margin-top: 100px !important; /* Raised to align with top row left hexagons */
+  margin-left: 0; /* Left column */
+}
+
+.hexagon-card:nth-child(5) {
+  margin-top: 208px; /* Second row, right column (already offset by 2n) */
+}
+
+.hexagon-card:nth-child(6) {
+  margin-top: 100px !important; /* Raised to align with top row left hexagons - override 2n */
+  margin-left: 0;
+}
+
+.hexagon-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Perfect hexagon clip-path - maintains aspect ratio */
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  overflow: hidden;
+  box-sizing: border-box;
+  /* Padding handled by inner content div */
+  position: relative;
+  z-index: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .hexagon-card {
+    width: 320px;
+    height: 369.5px; /* Maintain hexagon aspect ratio */
+    margin-bottom: -110px;
+  }
+  
+  .hexagon-card:nth-child(2n) {
+    margin-top: 185px; /* Half of height */
+  }
+  
+  .honeycomb-grid {
+    gap: 2rem;
+    padding: 3rem 1.5rem 7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hexagon-card {
+    width: 280px;
+    height: 323.3px; /* Maintain hexagon aspect ratio */
+    margin-bottom: -100px;
+  }
+  
+  .hexagon-card:nth-child(2n) {
+    margin-top: 162px; /* Half of height */
+  }
+  
+  .honeycomb-grid {
+    gap: 1.5rem;
+    padding: 2.5rem 1rem 6rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hexagon-card {
+    width: 260px;
+    height: 300.35px; /* Maintain hexagon aspect ratio */
+    margin-bottom: -90px;
+  }
+  
+  .hexagon-card:nth-child(2n) {
+    margin-top: 150px; /* Half of height */
+  }
+  
+  .honeycomb-grid {
+    gap: 1rem;
+    padding: 2rem 0.75rem 5rem;
+  }
+}
+
+/* Phone Call Button Pulse Animation */
+.phone-call-button {
+  position: relative;
+}
+
+.phone-pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid rgba(245, 158, 11, 0.8);
+  animation: phonePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  opacity: 0;
+}
+
+.phone-pulse-ring-delay {
+  animation-delay: 1s;
+}
+
+@keyframes phonePulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.phone-call-button:hover .phone-pulse-ring {
+  animation-duration: 1.5s;
+}
+
+/* Logo styling - No filters, shadows, borders, or effects - completely seamless */
+.logo-container,
+.logo-container *,
+.logo-container *::before,
+.logo-container *::after,
+[class*="logo"] *,
+[class*="logo"],
+img[src*="logo"],
+img.logo-image,
+.logo-image,
+.logo-image * {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-color: transparent !important;
+  box-sizing: border-box;
+  mix-blend-mode: normal !important;
+}
+
+/* Target Next.js Image span wrapper specifically - remove ALL borders */
+.logo-container span,
+.logo-container div,
+.logo-container > *,
+.logo-container picture,
+.logo-container img,
+img.logo-image,
+.logo-image,
+[class*="logo"] span,
+[class*="logo"] div {
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
+}
+
+.logo-image {
+  box-shadow: none !important;
+  drop-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  filter: none !important;
+}
+
+.logo-container img {
+  border: none !important;
+  border-width: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 100%;
+  overflow: visible;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+}
+
+.logo-container img,
+.logo-container picture,
+.logo-container picture img,
+.logo-container span,
+.logo-container span img,
+.logo-container div,
+.logo-container div img {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
+  object-fit: contain;
+  display: block;
+  overflow: visible;
+  margin: 0 !important;
+  padding: 0 !important;
 }
