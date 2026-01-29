@@ -41,7 +41,7 @@ export default function Logo({ size = 'md', showText = true, className = '' }: L
         ) : (
           <div className="relative logo-container flex items-center justify-center" style={{ height: `${currentSize.height}px`, width: 'auto', background: 'transparent', border: 'none', borderWidth: 0, outline: 'none', boxShadow: 'none' }}>
             <img
-              src="/logo.png"
+              src="/logo2.png"
               alt="Right Hand Labs Logo"
               className="object-contain logo-image"
               style={{ 
