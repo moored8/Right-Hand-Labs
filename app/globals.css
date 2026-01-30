@@ -27,6 +27,13 @@ body {
   color: #ffffff;
   font-family: var(--font-inter), system-ui, sans-serif;
   overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Ensure sticky elements (e.g. hero logo) stick to viewport; avoid overflow on main breaking sticky */
+main {
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 /* Circuit Board Pattern Background using CSS Gradients - Enhanced to match logo */

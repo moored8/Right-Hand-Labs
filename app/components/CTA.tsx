@@ -34,7 +34,7 @@ export default function CTA({ onBookCall }: CTAProps) {
           onClick={onBookCall}
           className="px-8 py-4 md:px-12 md:py-5 bg-amber-500 text-neutral-950 font-bold text-lg md:text-xl rounded-sm hover:bg-amber-400 transition-all duration-300"
         >
-          Book Strategy Call
+          Schedule Call
         </motion.button>
       </motion.div>
     </section>
@@ -106,7 +106,7 @@ export function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
         
         <div className="space-y-6">
           <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-            Book Your Strategy Call
+            Schedule Your Call
           </h3>
           <p className="text-white/70 text-lg">
             Let's discuss how we can automate the mundane and eliminate friction in your business.

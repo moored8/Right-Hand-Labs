@@ -244,7 +244,7 @@ function ServiceCard({
                   whileTap={{ scale: 0.95 }}
                   className="w-full px-6 py-3 bg-amber-500 text-neutral-950 font-bold text-sm md:text-base rounded-sm hover:bg-amber-400 transition-all duration-300 shadow-lg shadow-amber-500/20"
                 >
-                  Set Up A Call
+                  Schedule Call
                 </motion.button>
               </div>
             </motion.div>

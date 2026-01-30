@@ -3,9 +3,9 @@
 export default function Footer() {
   return (
     <footer className="relative z-10 w-full bg-neutral-950/80 backdrop-blur-sm border-t border-white/5 mt-20">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-center md:text-left">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-8 pr-24 md:pr-28">
+        <div className="flex flex-col justify-center items-center gap-4 text-center">
+          <div>
             <p className="text-white/60 text-sm">
               © 2026 Right Hand Labs. All rights reserved.
             </p>
