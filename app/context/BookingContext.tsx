@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useCallback } from 'react';
+import { ThemeProvider } from './ThemeContext';
 import StickyGlassNav from '../components/StickyGlassNav';
 import { BookingModal } from '../components/CTA';
 import VoiceOrb from '../components/VoiceOrb';
@@ -23,12 +24,14 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
   const openBookingModal = useCallback(() => setIsModalOpen(true), []);
 
   return (
-    <BookingContext.Provider value={{ openBookingModal }}>
-      <StickyGlassNav onBookCall={() => setIsModalOpen(true)} />
-      {children}
-      <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <HighLevelVoiceWidget />
-      <VoiceOrb />
-    </BookingContext.Provider>
+    <ThemeProvider>
+      <BookingContext.Provider value={{ openBookingModal }}>
+        <StickyGlassNav onBookCall={() => setIsModalOpen(true)} />
+        {children}
+        <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        <HighLevelVoiceWidget />
+        <VoiceOrb />
+      </BookingContext.Provider>
+    </ThemeProvider>
   );
 }

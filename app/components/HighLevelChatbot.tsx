@@ -2,18 +2,13 @@
 
 import { useEffect } from 'react';
 
-declare global {
-  interface Window {
-    leadConnector?: { chatWidget?: { closeWidget: () => void } };
-  }
-}
-
 export default function HighLevelChatbot() {
   useEffect(() => {
     function closeWidget() {
       try {
-        if (typeof window !== 'undefined' && window.leadConnector?.chatWidget?.closeWidget) {
-          window.leadConnector.chatWidget.closeWidget();
+        const w = window as unknown as { leadConnector?: { chatWidget?: { closeWidget: () => void } } };
+        if (typeof window !== 'undefined' && w.leadConnector?.chatWidget?.closeWidget) {
+          w.leadConnector.chatWidget.closeWidget();
         }
       } catch {
         // ignore
@@ -44,4 +39,3 @@ export default function HighLevelChatbot() {
 
   return null;
 }
-git add .

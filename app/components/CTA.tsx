@@ -27,12 +27,12 @@ export default function CTA({ onBookCall }: CTAProps) {
         
         <motion.button
           whileHover={{ 
-            scale: 1.05,
-            boxShadow: '0 0 40px rgba(245, 158, 11, 0.4)',
+            scale: 1.03,
+            boxShadow: '0 0 32px rgba(245, 158, 11, 0.45)',
           }}
-          whileTap={{ scale: 0.95 }}
+          whileTap={{ scale: 0.98 }}
           onClick={onBookCall}
-          className="px-8 py-4 md:px-12 md:py-5 bg-amber-500 text-neutral-950 font-bold text-lg md:text-xl rounded-sm hover:bg-amber-400 transition-all duration-300"
+          className="whitespace-nowrap px-10 py-4 md:px-14 md:py-5 bg-amber-500 text-neutral-950 font-bold text-base md:text-xl rounded-lg shadow-xl shadow-amber-500/30 hover:bg-amber-400 transition-all duration-200"
         >
           Schedule Call
         </motion.button>
@@ -170,7 +170,7 @@ export function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                 whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-6 py-3 bg-amber-500 text-neutral-950 font-bold rounded-sm hover:bg-amber-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full whitespace-nowrap px-6 py-3.5 bg-amber-500 text-neutral-950 font-bold rounded-lg hover:bg-amber-400 transition-all duration-200 shadow-lg shadow-amber-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Sending...' : 'Schedule Call'}
               </motion.button>

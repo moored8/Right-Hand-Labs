@@ -30,6 +30,34 @@ body {
   overflow-y: auto;
 }
 
+/* Light theme */
+[data-theme="light"] body {
+  background: #fafafa;
+  color: #171717;
+}
+
+[data-theme="light"] .nav-theme-aware {
+  background: rgba(250, 250, 250, 0.85);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .nav-theme-aware a,
+[data-theme="light"] .nav-theme-aware .nav-link {
+  color: #404040;
+}
+
+[data-theme="light"] .nav-theme-aware a:hover {
+  color: #b45309;
+}
+
+[data-theme="light"] main {
+  background: transparent;
+}
+
+[data-theme="light"] .circuit-board-bg {
+  opacity: 0.35;
+}
+
 /* Ensure sticky elements (e.g. hero logo) stick to viewport; avoid overflow on main breaking sticky */
 main {
   overflow-x: hidden;
