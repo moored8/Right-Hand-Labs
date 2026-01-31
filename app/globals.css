@@ -36,6 +36,74 @@ main {
   overflow-y: visible;
 }
 
+/* Hides the default GHL button from your Sub-account */
+#chat-widget-container,
+.lc_chat-widget-launcher {
+  display: none !important;
+}
+
+/* Voice orb container */
+.voice-orb-container {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(0, 210, 255, 0.3) 0%, rgba(0, 210, 255, 0.1) 100%);
+  border: 2px solid rgba(0, 210, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.5), inset 0 0 15px rgba(0, 210, 255, 0.5);
+  animation: orb-breathing 3s ease-in-out infinite;
+}
+
+/* The Active/Listening State */
+.voice-orb-container.is-active {
+  border-color: #00ff88;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.8), inset 0 0 15px rgba(0, 255, 136, 0.5);
+  animation: orb-active-pulse 1.5s infinite;
+}
+
+.voice-orb-container.is-active .orb-text {
+  color: #00ff88;
+  text-shadow: 0 0 15px rgba(0, 255, 136, 1);
+}
+
+@keyframes orb-active-pulse {
+  0%, 100% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.orb-text {
+  color: #ffffff;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 210, 255, 1);
+  pointer-events: none;
+}
+
+@keyframes orb-breathing {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.5), inset 0 0 15px rgba(0, 210, 255, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(0, 210, 255, 0.8), inset 0 0 15px rgba(0, 210, 255, 0.5);
+  }
+}
+
 /* Circuit Board Pattern Background using CSS Gradients - Enhanced to match logo */
 .circuit-board-bg {
   position: fixed;

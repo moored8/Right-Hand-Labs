@@ -4,6 +4,7 @@ import { createContext, useContext, useState, useCallback } from 'react';
 import StickyGlassNav from '../components/StickyGlassNav';
 import { BookingModal } from '../components/CTA';
 import VoiceOrb from '../components/VoiceOrb';
+import HighLevelVoiceWidget from '../components/HighLevelVoiceWidget';
 
 type BookingContextType = {
   openBookingModal: () => void;
@@ -26,6 +27,7 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
       <StickyGlassNav onBookCall={() => setIsModalOpen(true)} />
       {children}
       <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <HighLevelVoiceWidget />
       <VoiceOrb />
     </BookingContext.Provider>
   );
