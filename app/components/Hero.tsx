@@ -90,7 +90,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-4 md:mt-6 text-base md:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed"
+          className="hero-subtext mt-4 md:mt-6 text-base md:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed"
         >
           Focus on what matters: your clients, your creativity, and your objectives.
         </motion.p>

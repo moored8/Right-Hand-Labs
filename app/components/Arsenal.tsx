@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
+import Link from 'next/link';
 import { Code, Zap, Cog, Briefcase, ChevronDown, Brain, Sparkles } from 'lucide-react';
 
 const services = [
@@ -12,16 +13,17 @@ const services = [
     expandedDescription: "The world of AI makes customization very attainable. You may even build software you can sell to others with your problem.",
   },
   {
-    icon: Zap,
-    title: 'Efficiency Expertise',
-    description: 'Scale Without the Headcount.',
-    expandedDescription: "You cannot know if you are efficient without measuring what you currently do. It's more surprising than you think.",
+    icon: Sparkles,
+    title: '24/7 Digital Agents',
+    description: 'Always-on automation and support.',
+    expandedDescription: "Round-the-clock digital agents handle tasks, support, and workflows so your team can focus on what matters most.",
   },
   {
     icon: Cog,
-    title: 'Automation Protocols',
-    description: 'Set It and Forget It.',
-    expandedDescription: "Pre-made protocols help you launch quickly. Or build you one of a kind custom system.",
+    title: 'Smart Web Design and Web Agents',
+    description: 'Websites and agents that work for you.',
+    expandedDescription: "Modern web design and AI-powered web agents that capture leads, automate tasks, and grow your business.",
+    href: '/innovations/hellosite',
   },
   {
     icon: Briefcase,
@@ -37,11 +39,10 @@ const services = [
     expandedDescription: "We develop comprehensive AI strategies tailored to your business needs and execute them with precision to drive real results and competitive advantage.",
   },
   {
-    icon: Sparkles,
-    title: 'And More',
-    titleLine2: 'coming soon...',
-    description: 'Stay tuned for updates.',
-    expandedDescription: "We're constantly developing new solutions and services. Check back soon for more innovative offerings.",
+    icon: Zap,
+    title: 'Efficiency Expertise',
+    description: 'Scale Without the Headcount.',
+    expandedDescription: "You cannot know if you are efficient without measuring what you currently do. It's more surprising than you think.",
   },
 ];
 
@@ -129,7 +130,7 @@ function ServiceCard({
   total,
   onBookCall,
 }: {
-  service: typeof services[0];
+  service: (typeof services)[0] & { href?: string; titleLine2?: string };
   index: number;
   total: number;
   onBookCall?: () => void;
@@ -137,23 +138,14 @@ function ServiceCard({
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.5 });
   const [isExpanded, setIsExpanded] = useState(false);
+  const hasLink = 'href' in service && service.href;
 
   const Icon = service.icon;
 
-  return (
-    <motion.div
-      ref={ref}
-      variants={{
-        hidden: { opacity: 0, scale: 0.8 },
-        visible: { opacity: 1, scale: 1 },
-      }}
-      transition={{ duration: 0.6 }}
-      className="hexagon-card"
-      onClick={() => setIsExpanded(!isExpanded)}
-      whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-    >
-      {/* SVG Hexagon Border - Drawn with colored line */}
-      <svg 
+  const innerContent = (
+    <>
+      {/* SVG Hexagon Border */}
+      <svg
         className="absolute inset-0 w-full h-full pointer-events-none z-10"
         viewBox="0 0 360 415.69"
         preserveAspectRatio="xMidYMid meet"
@@ -162,36 +154,29 @@ function ServiceCard({
         <polygon
           points="180,0 360,103.92 360,311.77 180,415.69 0,311.77 0,103.92"
           fill="none"
-          stroke={isExpanded ? '#fbbf24' : '#f59e0b'}
+          stroke={!hasLink && isExpanded ? '#fbbf24' : '#f59e0b'}
           strokeWidth="4"
           strokeLinejoin="round"
           strokeLinecap="round"
           className={`transition-all duration-500 ${
             isInView ? 'drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]' : ''
-          } ${isExpanded ? 'drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]' : ''}`}
+          } ${!hasLink && isExpanded ? 'drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]' : ''}`}
         />
       </svg>
-      
-      {/* Inner content hexagon */}
-      <div className={`hexagon-content relative bg-white/5 backdrop-blur-sm transition-all duration-500 cursor-pointer group ${
-        isExpanded ? 'bg-white/8' : ''
-      }`}>
+      <div className={`hexagon-content relative bg-white/5 backdrop-blur-sm transition-all duration-500 cursor-pointer group ${!hasLink && isExpanded ? 'bg-white/8' : ''}`}>
         <div className="flex flex-col items-center justify-center h-full w-full px-6 py-8 md:px-8 md:py-10 box-border overflow-y-auto text-center">
-          {/* Icon - Just above text */}
           <div className="flex-shrink-0 mb-4">
             <div className="w-16 h-16 md:w-20 md:h-20 bg-amber-500/10 rounded-full flex items-center justify-center border-2 border-amber-500/30 group-hover:border-amber-500/60 group-hover:bg-amber-500/20 transition-all duration-300 mx-auto">
               <Icon className="w-8 h-8 md:w-10 md:h-10 text-amber-500 transition-transform duration-300 group-hover:scale-110" />
             </div>
           </div>
-
-          {/* Title & Description - Right below icon */}
           <div className="flex-shrink-0 flex flex-col space-y-3 w-full px-2">
             <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-tight text-center">
               {service.title}
-              {(service as any).titleLine2 && (
+              {service.titleLine2 && (
                 <>
                   <br />
-                  {(service as any).titleLine2}
+                  {service.titleLine2}
                 </>
               )}
             </h3>
@@ -199,67 +184,89 @@ function ServiceCard({
               {service.description}
             </p>
           </div>
-          
-          {/* Bottom Section - Expanded Content & Chevron */}
-          <div className="flex-shrink-0 mt-6 w-full px-2">
-            {/* Expanded Description */}
-            <motion.div
-              initial={false}
-              animate={{
-                height: isExpanded ? 'auto' : 0,
-                opacity: isExpanded ? 1 : 0,
-                marginTop: isExpanded ? 16 : 0,
-              }}
-              transition={{ 
-                duration: 0.5,
-                ease: [0.4, 0, 0.2, 1],
-                opacity: { duration: 0.3, delay: isExpanded ? 0.1 : 0 },
-              }}
-              className="overflow-hidden w-full"
-            >
-              <div className="space-y-4 pt-2">
-                <motion.p
-                  initial={{ y: -10, opacity: 0 }}
-                  animate={{ 
-                    y: isExpanded ? 0 : -10,
-                    opacity: isExpanded ? 1 : 0,
-                  }}
-                  transition={{ delay: isExpanded ? 0.2 : 0 }}
-                  className="text-white/90 text-sm md:text-base leading-relaxed text-center"
-                >
-                  {service.expandedDescription}
-                </motion.p>
-                <motion.button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onBookCall?.();
-                  }}
-                  initial={{ y: -10, opacity: 0 }}
-                  animate={{ 
-                    y: isExpanded ? 0 : -10,
-                    opacity: isExpanded ? 1 : 0,
-                  }}
-                  transition={{ delay: isExpanded ? 0.3 : 0 }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full whitespace-nowrap px-5 py-3 bg-amber-500 text-neutral-950 font-bold text-sm rounded-lg hover:bg-amber-400 transition-all duration-200 shadow-lg shadow-amber-500/25"
-                >
-                  Schedule Call
-                </motion.button>
-              </div>
-            </motion.div>
-            
-            {/* Chevron indicator */}
-            <motion.div
-              animate={{ rotate: isExpanded ? 180 : 0 }}
-              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-              className="mt-4 flex justify-center"
-            >
-              <ChevronDown className="w-5 h-5 text-amber-500/60 group-hover:text-amber-500 transition-colors" />
-            </motion.div>
-          </div>
+          {hasLink ? (
+            <p className="flex-shrink-0 mt-4 text-amber-500 text-sm font-medium group-hover:text-amber-400">Learn more →</p>
+          ) : (
+            <div className="flex-shrink-0 mt-6 w-full px-2">
+              <motion.div
+                initial={false}
+                animate={{
+                  height: isExpanded ? 'auto' : 0,
+                  opacity: isExpanded ? 1 : 0,
+                  marginTop: isExpanded ? 16 : 0,
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.4, 0, 0.2, 1],
+                  opacity: { duration: 0.3, delay: isExpanded ? 0.1 : 0 },
+                }}
+                className="overflow-hidden w-full"
+              >
+                <div className="space-y-4 pt-2">
+                  <motion.p
+                    initial={{ y: -10, opacity: 0 }}
+                    animate={{ y: isExpanded ? 0 : -10, opacity: isExpanded ? 1 : 0 }}
+                    transition={{ delay: isExpanded ? 0.2 : 0 }}
+                    className="text-white/90 text-sm md:text-base leading-relaxed text-center"
+                  >
+                    {service.expandedDescription}
+                  </motion.p>
+                  <motion.button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onBookCall?.();
+                    }}
+                    initial={{ y: -10, opacity: 0 }}
+                    animate={{ y: isExpanded ? 0 : -10, opacity: isExpanded ? 1 : 0 }}
+                    transition={{ delay: isExpanded ? 0.3 : 0 }}
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="schedule-call-btn w-full whitespace-nowrap px-6 py-2.5 md:px-8 md:py-3 bg-amber-500 text-neutral-950 font-bold text-sm md:text-base rounded-lg shadow-lg shadow-amber-500/30 hover:bg-amber-400 hover:shadow-amber-500/50 transition-all duration-200"
+                  >
+                    Schedule Call
+                  </motion.button>
+                </div>
+              </motion.div>
+              <motion.div
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                className="mt-4 flex justify-center"
+              >
+                <ChevronDown className="w-5 h-5 text-amber-500/60 group-hover:text-amber-500 transition-colors" />
+              </motion.div>
+            </div>
+          )}
         </div>
       </div>
+    </>
+  );
+
+  if (hasLink) {
+    return (
+      <Link href={service.href!} className="block no-underline text-inherit">
+        <motion.div
+          ref={ref}
+          variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1 } }}
+          transition={{ duration: 0.6 }}
+          className="hexagon-card"
+          whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+        >
+          {innerContent}
+        </motion.div>
+      </Link>
+    );
+  }
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1 } }}
+      transition={{ duration: 0.6 }}
+      className="hexagon-card"
+      whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+      onClick={() => setIsExpanded(!isExpanded)}
+    >
+      {innerContent}
     </motion.div>
   );
 }

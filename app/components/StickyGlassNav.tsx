@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Logo from './Logo';
-import ThemeToggle from './ThemeToggle';
 
 interface StickyGlassNavProps {
   onBookCall: () => void;
@@ -29,16 +28,15 @@ export default function StickyGlassNav({ onBookCall }: StickyGlassNavProps) {
         >
           Innovations
         </Link>
-        <ThemeToggle />
-      <motion.button
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={onBookCall}
-        className="shrink-0 whitespace-nowrap px-6 py-2.5 md:px-8 md:py-3 bg-amber-500 text-neutral-950 font-bold text-sm md:text-base rounded-lg shadow-lg shadow-amber-500/30 hover:bg-amber-400 hover:shadow-amber-500/50 transition-all duration-200 min-w-[140px] md:min-w-[160px]"
-        style={{ marginRight: '2rem' }}
-      >
-        Schedule Call
-      </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={onBookCall}
+          className="schedule-call-btn shrink-0 whitespace-nowrap px-6 py-2.5 md:px-8 md:py-3 bg-amber-500 text-neutral-950 font-bold text-sm md:text-base rounded-lg shadow-lg shadow-amber-500/30 hover:bg-amber-400 hover:shadow-amber-500/50 transition-all duration-200 min-w-[140px] md:min-w-[160px]"
+          style={{ marginRight: '2rem' }}
+        >
+          Schedule Call
+        </motion.button>
       </div>
     </motion.nav>
   );

@@ -52,6 +52,8 @@ export default function VoiceOrb() {
 
   const handleClick = () => {
     if (state !== 'idle') return;
+    // Load widget script on first click (user gesture) so voice/mic work in production
+    window.dispatchEvent(new CustomEvent('request-voice-widget-load'));
     try {
       if (window.leadConnector?.chatWidget?.openWidget) {
         window.leadConnector.chatWidget.openWidget();

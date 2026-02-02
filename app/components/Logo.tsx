@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 interface LogoProps {
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   showText?: boolean;
   className?: string;
 }
@@ -17,6 +17,7 @@ export default function Logo({ size = 'md', showText = true, className = '' }: L
     md: { height: 60, text: 'text-base' },
     lg: { height: 120, text: 'text-xl' },
     xl: { height: 240, text: 'text-2xl' },
+    '2xl': { height: 360, text: 'text-3xl' }, // 50% larger than xl
   };
 
   const currentSize = sizes[size];
@@ -39,11 +40,11 @@ export default function Logo({ size = 'md', showText = true, className = '' }: L
             </div>
           </div>
         ) : (
-          <div className="relative logo-container flex items-center justify-center" style={{ height: `${currentSize.height}px`, width: 'auto', background: 'transparent', border: 'none', borderWidth: 0, outline: 'none', boxShadow: 'none' }}>
+          <div className="logo-theme-aware relative logo-container flex items-center justify-center" style={{ height: `${currentSize.height}px`, width: 'auto', background: 'transparent', border: 'none', borderWidth: 0, outline: 'none', boxShadow: 'none' }}>
             <img
               src="/logo2.png"
               alt="Right Hand Labs Logo"
-              className="object-contain logo-image"
+              className="logo-image object-contain"
               style={{ 
                 height: '100%', 
                 width: 'auto', 

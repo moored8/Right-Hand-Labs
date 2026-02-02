@@ -37,7 +37,7 @@ export default function Friction() {
         repeat: isInView ? Infinity : 0,
         repeatType: 'reverse',
       }}
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 md:px-12 py-32"
+      className="friction-section relative min-h-screen flex flex-col items-center justify-center px-6 md:px-12 py-32"
     >
       <motion.div
         initial={{ opacity: 0, y: 50 }}

@@ -34,7 +34,7 @@ export default function Home() {
         }}
       >
         <div className="w-full max-w-6xl px-8 md:px-12 flex flex-col items-center justify-center">
-          <Logo size="xl" showText={false} />
+          <Logo size="2xl" showText={false} />
         </div>
       </div>
 
