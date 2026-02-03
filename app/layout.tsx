@@ -18,6 +18,12 @@ export const metadata: Metadata = {
   description: "Your right hand in the digital age. Custom software, automation, and efficiency solutions.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{

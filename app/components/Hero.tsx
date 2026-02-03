@@ -43,7 +43,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative z-10 min-h-0 flex items-start justify-center overflow-visible pt-48 pb-8"
+      className="relative z-10 min-h-0 flex items-start justify-center overflow-visible pt-24 sm:pt-32 md:pt-48 pb-6 sm:pb-8"
     >
       {/* Parallax Grid Background */}
       <motion.div
@@ -69,9 +69,9 @@ export default function Hero() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 px-6 md:px-12 text-center"
+        className="relative z-10 px-4 sm:px-6 md:px-12 text-center max-w-[100vw] overflow-hidden"
       >
-        <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-amber-500 tracking-tighter leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-amber-500 tracking-tighter leading-tight break-words">
           {words.map((word, wordIndex) => (
             <div key={wordIndex} className="block mb-1 md:mb-2">
               {word.split('').map((letter, letterIndex) => (
