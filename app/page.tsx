@@ -13,7 +13,7 @@ import Footer from './components/Footer';
 export default function Home() {
   const { openBookingModal } = useBooking();
   return (
-    <main className="relative min-h-screen bg-neutral-950 text-white overflow-x-hidden">
+    <main className="relative min-h-screen bg-neutral-950 text-white overflow-x-hidden w-full min-w-0 max-w-[100vw]">
       {/* Dark Theme with CSS-Generated Circuit Board Pattern Background */}
       <CircuitBackground />
       
@@ -23,23 +23,17 @@ export default function Home() {
       {/* Mouse Spotlight Effect */}
       <MouseSpotlight />
       
-      {/* Hero Logo - scrolls with page */}
-      <div
-        className="relative z-[40] flex justify-center items-center w-full"
-        style={{
-          paddingTop: '5rem',
-          paddingBottom: '12rem',
-          minHeight: '280px',
-          background: 'transparent',
-        }}
-      >
-        <div className="w-full max-w-6xl px-8 md:px-12 flex flex-col items-center justify-center">
-          <Logo size="2xl" showText={false} />
+      {/* Hero Logo - scrolls with page, fits mobile */}
+      <div className="relative z-[40] flex justify-center items-center w-full pt-12 pb-16 sm:pt-16 sm:pb-24 md:pt-[5rem] md:pb-[12rem] min-h-[160px] sm:min-h-[240px] bg-transparent px-4">
+        <div className="w-full max-w-[min(100%,90vw)] flex flex-col items-center justify-center">
+          <div className="logo-hero-footer-size w-full flex justify-center max-w-full">
+            <Logo size="2xl" showText={false} />
+          </div>
         </div>
       </div>
 
-      {/* Content Sections */}
-      <div className="relative z-10" style={{ marginTop: '-8rem' }}>
+      {/* Content Sections - single column flow on mobile */}
+      <div className="relative z-10 -mt-12 sm:-mt-20 md:-mt-32 w-full min-w-0">
         <Hero />
         <Friction />
         {/* Honeycomb Grid Layout for Content Items */}

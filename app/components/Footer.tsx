@@ -11,11 +11,13 @@ export default function Footer() {
 
   return (
     <>
-      {/* Logo above footer - same size as hero */}
-      <div className="relative z-10 flex justify-center items-center w-full py-12 md:py-16">
-        <Logo size="2xl" showText={false} />
+      {/* Logo above footer - same size as hero, fits mobile */}
+      <div className="relative z-10 flex justify-center items-center w-full py-6 sm:py-8 md:py-16 px-4">
+        <div className="logo-hero-footer-size w-full flex justify-center max-w-[min(100%,90vw)]">
+          <Logo size="2xl" showText={false} />
+        </div>
       </div>
-      <footer className="relative z-10 w-full bg-neutral-950/80 backdrop-blur-sm border-t border-white/5 flex flex-col items-center justify-center px-6 md:px-12 py-8">
+      <footer className="relative z-10 w-full bg-neutral-950/80 backdrop-blur-sm border-t border-white/5 flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 py-6 sm:py-8 min-w-0">
         <div className="flex flex-col items-center justify-center gap-6 text-center">
           {/* Icons + Send Feedback button (below logo, above copyright) */}
           <div className="flex flex-wrap items-center justify-center gap-4">

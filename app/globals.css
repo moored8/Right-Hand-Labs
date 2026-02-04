@@ -20,6 +20,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -28,6 +30,8 @@ body {
   font-family: var(--font-inter), system-ui, sans-serif;
   overflow-x: hidden;
   overflow-y: auto;
+  min-width: 0;
+  width: 100%;
 }
 
 /* Light theme */
@@ -62,6 +66,21 @@ body {
 /* Logo: invert in light mode so dark hand/text on light background is readable */
 [data-theme="light"] .logo-theme-aware .logo-image {
   filter: invert(1);
+}
+
+/* Hero/footer logo: scale down on mobile so it doesn’t overflow */
+@media (max-width: 640px) {
+  .logo-hero-footer-size [class*="logo-container"],
+  .logo-hero-footer-size > div > div:first-child {
+    height: 240px !important;
+    max-height: 55vmin;
+  }
+}
+@media (max-width: 380px) {
+  .logo-hero-footer-size [class*="logo-container"],
+  .logo-hero-footer-size > div > div:first-child {
+    height: 200px !important;
+  }
 }
 
 /* Light theme: text and backgrounds */
@@ -374,11 +393,11 @@ a[href*="leadconnector"][style*="position: fixed"][style*="left"] {
   clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
 }
 
-/* Honeycomb Grid Layout */
+/* Honeycomb Grid Layout - desktop */
 .honeycomb-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   gap: 3rem;
   padding: 4rem 2rem 8rem;
@@ -388,35 +407,79 @@ a[href*="leadconnector"][style*="position: fixed"][style*="left"] {
   width: 100%;
   position: relative;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .hexagon-card {
   position: relative;
   width: 360px;
+  max-width: calc(100vw - 2rem);
   height: 415.69px; /* Height = width * sqrt(3) / 2 * 2 for proper hexagon aspect ratio */
   margin-bottom: -120px; /* Overlap for honeycomb effect */
   flex-shrink: 0;
 }
 
-/* Offset every other item to create honeycomb pattern */
+/* Offset every other item to create honeycomb pattern - desktop only */
 .hexagon-card:nth-child(2n) {
   margin-top: 208px; /* Half of height for proper offset */
 }
 
-/* Second row should mirror first row: 4(left), 5(right), 6(left) */
-/* Outer two hexagons (4 and 6) raised to align with top row outer hexagons */
 .hexagon-card:nth-child(4) {
-  margin-top: 100px !important; /* Raised to align with top row left hexagons */
-  margin-left: 0; /* Left column */
+  margin-top: 100px !important;
+  margin-left: 0;
 }
 
 .hexagon-card:nth-child(5) {
-  margin-top: 208px; /* Second row, right column (already offset by 2n) */
+  margin-top: 208px;
 }
 
 .hexagon-card:nth-child(6) {
-  margin-top: 100px !important; /* Raised to align with top row left hexagons - override 2n */
+  margin-top: 100px !important;
   margin-left: 0;
+}
+
+/* Mobile: single-column stack, properly sized hexagons */
+@media (max-width: 768px) {
+  .honeycomb-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 1rem 3rem;
+  }
+
+  .hexagon-card,
+  .hexagon-card:nth-child(2n),
+  .hexagon-card:nth-child(4),
+  .hexagon-card:nth-child(5),
+  .hexagon-card:nth-child(6) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    width: min(280px, calc(100vw - 2rem));
+    height: 323px; /* Proper aspect ratio: width * sqrt(3) / 2 * 2 */
+    flex-shrink: 0;
+  }
+}
+
+/* Small mobile: even smaller hexagons */
+@media (max-width: 480px) {
+  .honeycomb-grid {
+    gap: 1.5rem;
+    padding: 1.5rem 0.75rem 2.5rem;
+  }
+
+  .hexagon-card {
+    width: min(260px, calc(100vw - 1.5rem));
+    height: 300px;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+  .hexagon-card {
+    width: min(240px, calc(100vw - 1rem));
+    height: 277px;
+  }
 }
 
 .hexagon-content {
@@ -435,55 +498,26 @@ a[href*="leadconnector"][style*="position: fixed"][style*="left"] {
   z-index: 0;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .hexagon-card {
-    width: 320px;
-    height: 369.5px; /* Maintain hexagon aspect ratio */
-    margin-bottom: -110px;
-  }
-  
-  .hexagon-card:nth-child(2n) {
-    margin-top: 185px; /* Half of height */
-  }
-  
+/* Tablet: simpler 2-column layout, no complex honeycomb offset */
+@media (max-width: 1024px) and (min-width: 769px) {
   .honeycomb-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
-    padding: 3rem 1.5rem 7rem;
+    padding: 3rem 1.5rem 5rem;
   }
-}
 
-@media (max-width: 768px) {
-  .hexagon-card {
-    width: 280px;
-    height: 323.3px; /* Maintain hexagon aspect ratio */
-    margin-bottom: -100px;
-  }
-  
-  .hexagon-card:nth-child(2n) {
-    margin-top: 162px; /* Half of height */
-  }
-  
-  .honeycomb-grid {
-    gap: 1.5rem;
-    padding: 2.5rem 1rem 6rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .hexagon-card {
-    width: 260px;
-    height: 300.35px; /* Maintain hexagon aspect ratio */
-    margin-bottom: -90px;
-  }
-  
-  .hexagon-card:nth-child(2n) {
-    margin-top: 150px; /* Half of height */
-  }
-  
-  .honeycomb-grid {
-    gap: 1rem;
-    padding: 2rem 0.75rem 5rem;
+  .hexagon-card,
+  .hexagon-card:nth-child(2n),
+  .hexagon-card:nth-child(4),
+  .hexagon-card:nth-child(5),
+  .hexagon-card:nth-child(6) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    width: min(300px, calc(50vw - 1.5rem));
+    height: 346px;
   }
 }
 
@@ -515,6 +549,35 @@ a[href*="leadconnector"][style*="position: fixed"][style*="left"] {
   .innovations-honeycomb {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    padding: 1rem 0.5rem 2rem !important;
+    max-width: 100%;
+  }
+}
+
+/* Innovations hexagons: properly sized for mobile/tablet */
+@media (max-width: 640px) {
+  .innovations-honeycomb .hexagon-card.innovations-hexagon,
+  .innovations-honeycomb .innovations-hexagon {
+    width: min(280px, calc(100vw - 2rem)) !important;
+    height: 323px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .innovations-honeycomb .hexagon-card.innovations-hexagon,
+  .innovations-honeycomb .innovations-hexagon {
+    width: min(260px, calc(100vw - 1.5rem)) !important;
+    height: 300px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .innovations-honeycomb .hexagon-card.innovations-hexagon,
+  .innovations-honeycomb .innovations-hexagon {
+    width: min(240px, calc(100vw - 1rem)) !important;
+    height: 277px !important;
   }
 }
 

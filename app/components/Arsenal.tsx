@@ -63,18 +63,18 @@ export default function Arsenal({ onBookCall }: ArsenalProps) {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen py-32 px-6 md:px-12"
+      className="relative min-h-screen py-16 sm:py-28 md:py-32 px-3 sm:px-6 md:px-12 overflow-x-hidden w-full min-w-0"
     >
-      <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-center" style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto' }}>
+      <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-center min-w-0">
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16 md:mb-24"
+          className="text-center mb-12 md:mb-24 w-full max-w-[100vw]"
         >
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter mb-6 md:mb-8 break-words">
             THE ARSENAL
           </h2>
           
@@ -91,7 +91,7 @@ export default function Arsenal({ onBookCall }: ArsenalProps) {
         </motion.div>
 
         {/* Honeycomb Grid */}
-        <div className="w-full flex justify-start">
+        <div className="w-full flex justify-center">
           <motion.div 
             className="honeycomb-grid"
             initial="hidden"
@@ -164,14 +164,14 @@ function ServiceCard({
         />
       </svg>
       <div className={`hexagon-content relative bg-white/5 backdrop-blur-sm transition-all duration-500 cursor-pointer group ${!hasLink && isExpanded ? 'bg-white/8' : ''}`}>
-        <div className="flex flex-col items-center justify-center h-full w-full px-6 py-8 md:px-8 md:py-10 box-border overflow-y-auto text-center">
-          <div className="flex-shrink-0 mb-4">
-            <div className="w-16 h-16 md:w-20 md:h-20 bg-amber-500/10 rounded-full flex items-center justify-center border-2 border-amber-500/30 group-hover:border-amber-500/60 group-hover:bg-amber-500/20 transition-all duration-300 mx-auto">
-              <Icon className="w-8 h-8 md:w-10 md:h-10 text-amber-500 transition-transform duration-300 group-hover:scale-110" />
+        <div className="flex flex-col items-center justify-center h-full w-full px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 box-border overflow-y-auto text-center">
+          <div className="flex-shrink-0 mb-3 sm:mb-4">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-amber-500/10 rounded-full flex items-center justify-center border-2 border-amber-500/30 group-hover:border-amber-500/60 group-hover:bg-amber-500/20 transition-all duration-300 mx-auto">
+              <Icon className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-amber-500 transition-transform duration-300 group-hover:scale-110" />
             </div>
           </div>
-          <div className="flex-shrink-0 flex flex-col space-y-3 w-full px-2">
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-tight text-center">
+          <div className="flex-shrink-0 flex flex-col space-y-2 sm:space-y-3 w-full px-1 sm:px-2">
+            <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-tight text-center">
               {service.title}
               {service.titleLine2 && (
                 <>
@@ -180,7 +180,7 @@ function ServiceCard({
                 </>
               )}
             </h3>
-            <p className="text-white/80 text-sm md:text-base lg:text-lg leading-relaxed text-center">
+            <p className="text-white/80 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed text-center">
               {service.description}
             </p>
           </div>

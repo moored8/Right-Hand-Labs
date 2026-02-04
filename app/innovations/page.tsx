@@ -103,7 +103,7 @@ function ProductHexagon({
         />
       </svg>
       <div className="hexagon-content relative bg-white/5 backdrop-blur-sm group">
-        <div className="flex flex-col items-center justify-center h-full w-full px-6 py-8 md:px-8 md:py-10 box-border text-center">
+        <div className="flex flex-col items-center justify-center h-full w-full px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 box-border text-center">
           {product.href ? (
             <Link
               href={product.href}
@@ -124,18 +124,18 @@ function ProductHexagon({
 
 export default function InnovationsPage() {
   return (
-    <main className="relative z-10 min-h-screen pt-24 pb-32 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto">
+    <main className="relative z-10 min-h-screen pt-20 sm:pt-24 pb-24 sm:pb-32 px-4 sm:px-6 md:px-12 w-full min-w-0 overflow-x-hidden">
+      <div className="max-w-6xl mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-12 sm:mb-16 md:mb-20"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tighter mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white tracking-tighter mb-3 sm:mb-4 break-words">
             Innovations
           </h1>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
+          <p className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto px-1">
             Products from Right Hand Labs. Built to automate the mundane.
           </p>
         </motion.div>
