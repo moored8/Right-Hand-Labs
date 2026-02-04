@@ -74,19 +74,21 @@ export default function Arsenal({ onBookCall }: ArsenalProps) {
           transition={{ duration: 0.8 }}
           className="text-center mb-12 md:mb-24 w-full max-w-[100vw] px-4 sm:px-6"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter mb-6 md:mb-8 break-words px-2 sm:px-0">
-            THE ARSENAL
-          </h2>
-          
-          {/* Progress Bar */}
-          <div className="relative w-full max-w-[min(100%,32rem)] mx-auto h-1 bg-white/5 rounded-full overflow-hidden">
-            <motion.div
-              style={{ 
-                scaleX: progress,
-                transformOrigin: 'left',
-              }}
-              className="absolute top-0 left-0 h-full w-full bg-amber-500 rounded-full"
-            />
+          <div className="inline-flex flex-col items-center">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter mb-6 md:mb-8 break-words whitespace-nowrap">
+              THE ARSENAL
+            </h2>
+            
+            {/* Progress Bar - matches title text width exactly */}
+            <div className="relative w-full h-1 bg-white/5 rounded-full overflow-hidden">
+              <motion.div
+                style={{ 
+                  scaleX: progress,
+                  transformOrigin: 'left',
+                }}
+                className="absolute top-0 left-0 h-full w-full bg-amber-500 rounded-full"
+              />
+            </div>
           </div>
         </motion.div>
 
