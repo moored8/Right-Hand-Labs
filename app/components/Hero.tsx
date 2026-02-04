@@ -43,7 +43,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative z-10 min-h-0 flex items-start justify-center overflow-visible pt-24 sm:pt-32 md:pt-48 pb-6 sm:pb-8"
+      className="relative z-10 min-h-0 flex items-start justify-center overflow-visible pt-16 sm:pt-20 md:pt-32 pb-6 sm:pb-8"
     >
       {/* Parallax Grid Background */}
       <motion.div

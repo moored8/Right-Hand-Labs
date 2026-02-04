@@ -72,14 +72,17 @@ body {
 @media (max-width: 640px) {
   .logo-hero-footer-size [class*="logo-container"],
   .logo-hero-footer-size > div > div:first-child {
-    height: 240px !important;
-    max-height: 55vmin;
+    height: 220px !important;
+    max-height: 50vmin;
+    max-width: 90vw;
   }
 }
 @media (max-width: 380px) {
   .logo-hero-footer-size [class*="logo-container"],
   .logo-hero-footer-size > div > div:first-child {
-    height: 200px !important;
+    height: 180px !important;
+    max-height: 45vmin;
+    max-width: 85vw;
   }
 }
 
