@@ -29,8 +29,8 @@ export default function Logo({ size = 'md', showText = true, className = '' }: L
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="flex-shrink-0 relative flex items-center justify-center"
-        style={{ height: `${currentSize.height}px`, width: 'auto', marginTop: '0', paddingTop: '0', background: 'transparent', border: 'none', boxShadow: 'none' }}
+        className="flex-shrink-0 relative flex items-center justify-center overflow-visible"
+        style={{ height: `${currentSize.height}px`, width: 'auto', marginTop: '0', paddingTop: '0', marginBottom: '0', paddingBottom: '0', background: 'transparent', border: 'none', boxShadow: 'none' }}
       >
         {imageError ? (
           <div className="flex items-center justify-center h-full w-full bg-gradient-to-br from-amber-500/30 to-amber-600/20 rounded-sm border-2 border-amber-500/50 shadow-lg">

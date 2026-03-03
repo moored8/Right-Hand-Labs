@@ -37,14 +37,14 @@ export default function Friction() {
         repeat: isInView ? Infinity : 0,
         repeatType: 'reverse',
       }}
-      className="friction-section relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 py-20 sm:py-32"
+      className="friction-section relative min-h-screen flex flex-col items-center justify-center py-20 sm:py-32 w-full"
     >
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.8 }}
-        className="text-center space-y-6 sm:space-y-8 max-w-[100vw] overflow-hidden"
+        className="text-center space-y-6 sm:space-y-8 w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8"
       >
         <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tighter break-words">
           DIFFERENT INDUSTRIES.
@@ -68,7 +68,7 @@ export default function Friction() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-12 sm:mt-16 md:mt-20 max-w-4xl mx-auto space-y-4 sm:space-y-6 px-1"
+          className="mt-6 sm:mt-8 md:mt-10 max-w-4xl mx-auto space-y-4 sm:space-y-6 px-1"
         >
           <p className="text-base sm:text-xl md:text-2xl lg:text-3xl font-medium text-white/90 tracking-tight leading-relaxed break-words">
             TIRED OF BEING SOLD SOLUTIONS WHEN THEY DON'T EVEN KNOW YOUR PROBLEM.

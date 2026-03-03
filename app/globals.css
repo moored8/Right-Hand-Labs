@@ -72,18 +72,40 @@ body {
 @media (max-width: 640px) {
   .logo-hero-footer-size [class*="logo-container"],
   .logo-hero-footer-size > div > div:first-child {
-    height: 220px !important;
-    max-height: 50vmin;
+    height: 200px !important;
+    max-height: 45vmin;
     max-width: 90vw;
+    overflow: visible !important;
   }
 }
 @media (max-width: 380px) {
   .logo-hero-footer-size [class*="logo-container"],
   .logo-hero-footer-size > div > div:first-child {
-    height: 180px !important;
-    max-height: 45vmin;
+    height: 160px !important;
+    max-height: 40vmin;
     max-width: 85vw;
+    overflow: visible !important;
   }
+}
+
+/* Ensure logo container never clips content */
+.logo-hero-footer-size {
+  overflow: visible !important;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.logo-hero-footer-size [class*="logo-container"],
+.logo-hero-footer-size > div > div:first-child,
+.logo-hero-footer-size > div {
+  overflow: visible !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 /* Light theme: text and backgrounds */
@@ -396,19 +418,18 @@ a[href*="leadconnector"][style*="position: fixed"][style*="left"] {
   clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
 }
 
-/* Honeycomb Grid Layout - desktop */
+/* Honeycomb Grid Layout - desktop - 3 hexagons per row */
 .honeycomb-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-items: center;
   align-items: flex-start;
   gap: 3rem;
   padding: 4rem 2rem 8rem;
-  max-width: 1800px;
+  max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  position: relative;
   box-sizing: border-box;
   overflow-x: hidden;
 }
@@ -417,67 +438,46 @@ a[href*="leadconnector"][style*="position: fixed"][style*="left"] {
   position: relative;
   width: 360px;
   max-width: calc(100vw - 2rem);
-  height: 415.69px; /* Height = width * sqrt(3) / 2 * 2 for proper hexagon aspect ratio */
-  margin-bottom: -120px; /* Overlap for honeycomb effect */
+  height: 415.69px;
   flex-shrink: 0;
-}
-
-/* Offset every other item to create honeycomb pattern - desktop only */
-.hexagon-card:nth-child(2n) {
-  margin-top: 208px; /* Half of height for proper offset */
-}
-
-.hexagon-card:nth-child(4) {
-  margin-top: 100px !important;
-  margin-left: 0;
-}
-
-.hexagon-card:nth-child(5) {
-  margin-top: 208px;
-}
-
-.hexagon-card:nth-child(6) {
-  margin-top: 100px !important;
-  margin-left: 0;
+  margin: 0;
 }
 
 /* Mobile: single-column stack, properly sized hexagons */
+@media (max-width: 1024px) {
+  .honeycomb-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .hexagon-card {
+    margin: 0 auto;
+    width: min(300px, calc(50vw - 2rem));
+    height: 346px;
+  }
+}
+
 @media (max-width: 768px) {
   .honeycomb-grid {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
     gap: 2rem;
     padding: 2rem 1rem 3rem;
   }
 
-  .hexagon-card,
-  .hexagon-card:nth-child(2n),
-  .hexagon-card:nth-child(4),
-  .hexagon-card:nth-child(5),
-  .hexagon-card:nth-child(6) {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    margin-left: 0 !important;
+  .hexagon-card {
     width: min(280px, calc(100vw - 2rem));
-    height: 323px; /* Proper aspect ratio: width * sqrt(3) / 2 * 2 */
-    flex-shrink: 0;
+    height: 323px;
   }
 }
 
-/* Small mobile: even smaller hexagons */
 @media (max-width: 480px) {
-  .honeycomb-grid {
-    gap: 1.5rem;
-    padding: 1.5rem 0.75rem 2.5rem;
-  }
-
   .hexagon-card {
     width: min(260px, calc(100vw - 1.5rem));
     height: 300px;
   }
 }
 
-/* Extra small phones */
 @media (max-width: 360px) {
   .hexagon-card {
     width: min(240px, calc(100vw - 1rem));
@@ -715,4 +715,95 @@ img.logo-image,
   overflow: visible;
   margin: 0 !important;
   padding: 0 !important;
+}
+
+/* Schedule Call Button - Glowing Border Style */
+.schedule-call-btn {
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      rgba(245, 158, 11, 0.15),
+      rgba(245, 158, 11, 0.15) 2px,
+      rgba(245, 158, 11, 0.12) 2px,
+      rgba(245, 158, 11, 0.12) 4px
+    ),
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(245, 158, 11, 0.18) 0%,
+      rgba(245, 158, 11, 0.15) 50%,
+      rgba(245, 158, 11, 0.12) 100%
+    ) !important;
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  border: 2px solid #f59e0b !important;
+  border-radius: 2rem !important;
+  color: #fef3c7 !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 1rem 2.5rem !important;
+  min-height: auto !important;
+  box-shadow: 
+    0 0 10px rgba(245, 158, 11, 0.4),
+    0 0 20px rgba(245, 158, 11, 0.2),
+    inset 0 0 10px rgba(254, 243, 199, 0.1);
+  text-shadow: 
+    0 0 8px rgba(254, 243, 199, 0.6),
+    0 0 4px rgba(254, 243, 199, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: visible;
+  backdrop-filter: blur(8px);
+}
+
+.schedule-call-btn:hover {
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      rgba(245, 158, 11, 0.25),
+      rgba(245, 158, 11, 0.25) 2px,
+      rgba(245, 158, 11, 0.22) 2px,
+      rgba(245, 158, 11, 0.22) 4px
+    ),
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(245, 158, 11, 0.28) 0%,
+      rgba(245, 158, 11, 0.25) 50%,
+      rgba(245, 158, 11, 0.22) 100%
+    ) !important;
+  background-color: rgba(245, 158, 11, 0.25) !important;
+  border-color: #fbbf24 !important;
+  box-shadow: 
+    0 0 15px rgba(251, 191, 36, 0.6),
+    0 0 30px rgba(251, 191, 36, 0.3),
+    inset 0 0 15px rgba(254, 243, 199, 0.15);
+  text-shadow: 
+    0 0 12px rgba(254, 243, 199, 0.8),
+    0 0 6px rgba(254, 243, 199, 0.5);
+  transform: scale(1.02);
+}
+
+.schedule-call-btn:active {
+  transform: scale(0.98);
+}
+
+.schedule-call-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Responsive padding adjustments */
+@media (max-width: 640px) {
+  .schedule-call-btn {
+    padding: 0.875rem 2rem !important;
+    font-size: 0.875rem;
+    border-radius: 1.75rem !important;
+  }
+}
+
+@media (min-width: 641px) {
+  .schedule-call-btn {
+    padding: 1rem 2.5rem !important;
+    border-radius: 2rem !important;
+  }
 }

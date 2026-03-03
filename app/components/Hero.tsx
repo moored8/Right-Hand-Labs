@@ -69,7 +69,7 @@ export default function Hero() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 px-4 sm:px-6 md:px-12 text-center max-w-[100vw] overflow-hidden"
+        className="relative z-10 text-center max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 overflow-hidden"
       >
         <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-amber-500 tracking-tighter leading-tight break-words">
           {words.map((word, wordIndex) => (
@@ -90,7 +90,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="hero-subtext mt-4 md:mt-6 text-base md:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed"
+          className="hero-subtext mt-4 md:mt-6 text-base md:text-lg lg:text-xl text-white/80 max-w-4xl mx-auto leading-relaxed text-center"
         >
           Focus on what matters: your clients, your creativity, and your objectives.
         </motion.p>

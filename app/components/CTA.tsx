@@ -11,13 +11,13 @@ interface CTAProps {
 
 export default function CTA({ onBookCall }: CTAProps) {
   return (
-    <section className="relative min-h-[60vh] sm:min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 py-20 sm:py-32 w-full min-w-0">
+    <section className="relative min-h-[60vh] sm:min-h-screen flex items-center justify-center py-20 sm:py-32 w-full min-w-0">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="text-center space-y-8 sm:space-y-12 max-w-4xl mx-auto w-full px-2"
+        className="text-center space-y-8 sm:space-y-12 max-w-4xl mx-auto w-full px-4 sm:px-6 md:px-8"
       >
         <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter leading-tight break-words">
           YOUR RIGHT HAND
@@ -26,10 +26,10 @@ export default function CTA({ onBookCall }: CTAProps) {
         </h2>
         
         <motion.button
-          whileHover={{ scale: 1.03 }}
+          whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={onBookCall}
-          className="schedule-call-btn shrink-0 whitespace-nowrap px-5 py-3 sm:px-8 sm:py-3 bg-amber-500 text-neutral-950 font-bold text-sm md:text-base rounded-lg shadow-lg shadow-amber-500/30 hover:bg-amber-400 min-h-[48px]"
+          className="schedule-call-btn shrink-0 whitespace-nowrap text-sm md:text-base"
         >
           Schedule Call
         </motion.button>
@@ -167,7 +167,7 @@ export function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                 whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                 type="submit"
                 disabled={isSubmitting}
-                className="schedule-call-btn w-full whitespace-nowrap px-6 py-2.5 md:px-8 md:py-3 bg-amber-500 text-neutral-950 font-bold text-sm md:text-base rounded-lg shadow-lg shadow-amber-500/30 hover:bg-amber-400 hover:shadow-amber-500/50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="schedule-call-btn w-full whitespace-nowrap text-sm md:text-base"
               >
                 {isSubmitting ? 'Sending...' : 'Schedule Call'}
               </motion.button>

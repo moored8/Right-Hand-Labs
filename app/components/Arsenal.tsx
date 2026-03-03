@@ -63,37 +63,35 @@ export default function Arsenal({ onBookCall }: ArsenalProps) {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen py-16 sm:py-28 md:py-32 px-3 sm:px-6 md:px-12 overflow-x-hidden w-full min-w-0"
+      className="relative min-h-screen py-16 sm:py-28 md:py-32 overflow-x-hidden overflow-y-visible w-full min-w-0 z-10"
     >
-      <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-center min-w-0">
+      <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-center min-w-0 px-4 sm:px-6 md:px-8" style={{ width: '100%' }}>
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12 md:mb-24 w-full max-w-[100vw] px-4 sm:px-6"
+          className="text-center mb-12 md:mb-24 w-full flex flex-col items-center"
         >
-          <div className="inline-flex flex-col items-center">
-            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter mb-6 md:mb-8 break-words whitespace-nowrap">
-              THE ARSENAL
-            </h2>
-            
-            {/* Progress Bar - matches title text width exactly */}
-            <div className="relative w-full h-1 bg-white/5 rounded-full overflow-hidden">
-              <motion.div
-                style={{ 
-                  scaleX: progress,
-                  transformOrigin: 'left',
-                }}
-                className="absolute top-0 left-0 h-full w-full bg-amber-500 rounded-full"
-              />
-            </div>
+          <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter mb-6 md:mb-8 break-words">
+            THE ARSENAL
+          </h2>
+          
+          {/* Progress Bar - matches title text width exactly */}
+          <div className="relative h-1 bg-white/5 rounded-full overflow-hidden" style={{ width: 'min(100%, 20ch)' }}>
+            <motion.div
+              style={{ 
+                scaleX: progress,
+                transformOrigin: 'left',
+              }}
+              className="absolute top-0 left-0 h-full w-full bg-amber-500 rounded-full"
+            />
           </div>
         </motion.div>
 
         {/* Honeycomb Grid */}
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center items-center">
           <motion.div 
             className="honeycomb-grid"
             initial="hidden"
@@ -221,9 +219,9 @@ function ServiceCard({
                     initial={{ y: -10, opacity: 0 }}
                     animate={{ y: isExpanded ? 0 : -10, opacity: isExpanded ? 1 : 0 }}
                     transition={{ delay: isExpanded ? 0.3 : 0 }}
-                    whileHover={{ scale: 1.03 }}
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="schedule-call-btn w-full whitespace-nowrap px-6 py-2.5 md:px-8 md:py-3 bg-amber-500 text-neutral-950 font-bold text-sm md:text-base rounded-lg shadow-lg shadow-amber-500/30 hover:bg-amber-400 hover:shadow-amber-500/50 transition-all duration-200"
+                    className="schedule-call-btn w-full whitespace-nowrap text-sm md:text-base"
                   >
                     Schedule Call
                   </motion.button>

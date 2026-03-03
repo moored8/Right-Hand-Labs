@@ -17,7 +17,7 @@ export default function Footer() {
           <Logo size="2xl" showText={false} />
         </div>
       </div>
-      <footer className="relative z-10 w-full bg-neutral-950/80 backdrop-blur-sm border-t border-white/5 flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 py-6 sm:py-8 min-w-0">
+      <footer className="relative z-10 w-full bg-neutral-950/80 backdrop-blur-sm border-t border-white/5 flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 py-6 sm:py-8 min-w-0">
         <div className="flex flex-col items-center justify-center gap-6 text-center">
           {/* Icons + Send Feedback button (below logo, above copyright) */}
           <div className="flex flex-wrap items-center justify-center gap-4">

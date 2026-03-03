@@ -9,10 +9,10 @@ const products = [
   {
     slug: 'firstring',
     title: 'First Ring',
-    badge: 'Live',
+    badge: 'Coming soon',
     description: 'Voice AI that works for your business.',
-    href: '/innovations/firstring',
-    comingSoon: false,
+    href: null,
+    comingSoon: true,
     icon: Radio,
   },
   {
@@ -36,10 +36,10 @@ const products = [
   {
     slug: 'hellosite',
     title: 'HelloSite',
-    badge: 'Live',
+    badge: 'Coming soon',
     description: 'Smart and talking web agents that capture more leads.',
-    href: '/innovations/hellosite',
-    comingSoon: false,
+    href: null,
+    comingSoon: true,
     icon: Bot,
   },
 ];
